@@ -54,6 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
   final counterBloc = CounterBloc();
 
   @override
+  @override
+  void dispose() {
+    counterBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
