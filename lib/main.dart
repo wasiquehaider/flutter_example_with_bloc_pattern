@@ -1,4 +1,5 @@
 import 'package:bloc_tutorial/counter_bloc.dart';
+import 'package:bloc_tutorial/news_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: NewsPage(),
     );
   }
 }
@@ -94,10 +96,12 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: counterBloc.counterStream,
               initialData: 0,
               builder: (context, snapshot) {
-                return Text(
-                  '${snapshot.data}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
+                if (snapshot.hasData)
+                  return Text(
+                    '${snapshot.data}',
+                    style: Theme.of(context).textTheme.headline4,
+                  );
+                if (snapshot.hasError) print(snapshot.error);
               },
             ),
           ],
